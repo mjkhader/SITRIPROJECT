@@ -2,7 +2,6 @@
   <section
     class="relative bg-gradient-to-b from-SkyBlue to-TealBlue py-16 overflow-hidden text-white"
   >
-    <!-- Background Elements -->
     <div class="absolute inset-0">
       <div class="top-8 left-12 absolute">
         <img
@@ -27,11 +26,9 @@
       </div>
     </div>
 
-    <!-- Section Layout -->
     <div
       class="z-10 relative flex lg:flex-row flex-col justify-between items-center mx-auto px-6 lg:px-20 container"
     >
-      <!-- Left Side: Text Content -->
       <div class="relative -mt-6 lg:w-1/2 text-center lg:text-center">
         <h2 class="font-bold text-4xl">
           Explore Your Most Favorite Destinations
@@ -49,14 +46,13 @@
             Get Started
           </button>
           <button
-            class="bg-SkyBlue hover:bg-TealBlue shadow-md px-6 py-3 border border-TealBlue rounded-full font-semibold text-TealBlue transition duration-300"
+            class="bg-SkyBlue hover:bg-PewterBlue shadow-md px-6 py-3 border border-TealBlue rounded-full font-semibold text-TealBlue hover:text-Navy transition duration-300"
           >
             Learn More
           </button>
         </div>
       </div>
 
-      <!-- Right Side: Circular Image with Overlapping Effect -->
       <div
         class="relative flex justify-center lg:justify-end mt-10 lg:mt-0 lg:w-1/2"
       >
