@@ -3,7 +3,7 @@
     <div class="mx-auto px-6 lg:px-20 container">
       <!-- Section Header -->
       <div class="mb-12 lg:text-left">
-        <h2 class="font-bold text-Navy text-4xl text-center">
+        <h2 class="font-bold text-navy text-4xl text-center">
           Popular Destination For Your Explorer
         </h2>
       </div>
@@ -21,10 +21,10 @@
             class="w-full h-80 object-cover"
           />
           <div class="p-6">
-            <h3 class="font-semibold text-Navy text-2xl text-center">
+            <h3 class="font-semibold text-navy text-2xl text-center">
               {{ destination.title }}
             </h3>
-            <p class="mt-2 text-TealBlue text-center">{{ destination.description }}</p>
+            <p class="mt-2 text-teal-blue text-center">{{ destination.description }}</p>
            
           </div>
         </div>
@@ -35,7 +35,7 @@
         <button
           @click="prevPage"
           :disabled="currentPage === 1"
-          class="bg-gray-200 hover:bg-TealBlue p-2 rounded-full hover:text-white transition"
+          class="bg-gray-200 hover:bg-teal-blue p-2 rounded-full hover:text-white transition"
         >
           &lt;
         </button>
@@ -46,8 +46,8 @@
           :class="[
             'p-3 w-10 h-10 rounded-full transition',
             currentPage === page
-              ? 'bg-TealBlue text-white'
-              : 'bg-gray-200 hover:bg-TealBlue hover:text-white',
+              ? 'bg-teal-blue text-white'
+              : 'bg-gray-200 hover:bg-teal-blue hover:text-white',
           ]"
         >
           {{ page }}
@@ -55,7 +55,7 @@
         <button
           @click="nextPage"
           :disabled="currentPage === totalPages"
-          class="bg-gray-200 hover:bg-TealBlue p-2 rounded-full hover:text-white transition"
+          class="bg-gray-200 hover:bg-teal-blue p-2 rounded-full hover:text-white transition"
         >
           &gt;
         </button>

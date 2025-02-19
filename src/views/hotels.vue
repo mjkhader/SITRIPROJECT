@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { ref } from "vue"; 
 import SidebarFilter from "@/components/hotels/sidebar.vue";
 import ListingCard from "@/components/hotels/ListingCard.vue";
 import FooterComponent from "@/components/footer.vue";
@@ -34,31 +35,34 @@ export default {
     ListingCard,
     FooterComponent,
   },
-  data() {
+  setup() {
+    
+    const properties = ref([
+      {
+        id: 1,
+        title: "Petra Voila",
+        location: "Wadi Musa",
+        price: 63,
+        image: "",
+      },
+      {
+        id: 2,
+        title: "Petra Premium Hotel",
+        location: "Wadi Musa",
+        price: 93,
+        image: "",
+      },
+      {
+        id: 3,
+        title: "Edom Hotel",
+        location: "Wadi Musa",
+        price: 148,
+        image: "",
+      },
+    ]);
+    
     return {
-      properties: [
-        {
-          id: 1,
-          title: "Petra Voila",
-          location: "Wadi Musa",
-          price: 63,
-          image: "",
-        },
-        {
-          id: 2,
-          title: "Petra Premium Hotel",
-          location: "Wadi Musa",
-          price: 93,
-          image: "",
-        },
-        {
-          id: 3,
-          title: "Edom Hotel",
-          location: "Wadi Musa",
-          price: 148,
-          image: "",
-        },
-      ],
+      properties,
     };
   },
 };

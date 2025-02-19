@@ -1,6 +1,6 @@
 <template>
   <section
-    class="relative bg-gradient-to-b from-SkyBlue to-TealBlue py-16 overflow-hidden text-white"
+    class="relative bg-gradient-to-b from-sky-blue to-teal-blue py-16 overflow-hidden text-white"
   >
     <div class="absolute inset-0">
       <div class="top-8 left-12 absolute">
@@ -41,12 +41,12 @@
 
         <div class="flex justify-center lg:justify-center space-x-4 mt-6">
           <button
-            class="bg-TealBlue hover:bg-PastelBlue shadow-md px-6 py-3 rounded-full font-semibold text-SkyBlue transition duration-300"
+            class="bg-teal-blue hover:bg-pastel-blue shadow-md px-6 py-3 rounded-full font-semibold text-sky-blue hover:text-navy transition duration-300"
           >
             Get Started
           </button>
           <button
-            class="bg-SkyBlue hover:bg-PewterBlue shadow-md px-6 py-3 border border-TealBlue rounded-full font-semibold text-TealBlue hover:text-Navy transition duration-300"
+            class="bg-sky-blue hover:bg-pastel-blue shadow-md px-6 py-3 border border-teal-blue rounded-full font-semibold text-teal-blue hover:text-navy transition duration-300"
           >
             Learn More
           </button>
@@ -58,15 +58,15 @@
       >
         <div class="relative">
           <div
-            class="-top-10 -right-10 absolute bg-TealBlue opacity-60 rounded-full w-96 h-96"
+            class="-top-10 -right-10 absolute bg-teal-blue opacity-60 rounded-full w-96 h-96"
           ></div>
           <div
-            class="-bottom-10 -left-10 absolute bg-TealBlue opacity-50 rounded-full w-80 h-80"
+            class="-bottom-10 -left-10 absolute bg-teal-blue opacity-50 rounded-full w-80 h-80"
           ></div>
           <img
             src="@/assets/imgs/img01.jpg"
             alt="Travel"
-            class="relative shadow-lg border-8 border-SkyBlue rounded-full w-96 h-96 object-cover"
+            class="relative shadow-lg border-8 border-sky-blue rounded-full w-96 h-96 object-cover"
           />
         </div>
       </div>
