@@ -1,15 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LandingPage from "@/views/home/LandingPage.vue";
-import AddPublicPlace from '@/views/places/AddPublicPlace.vue';
-
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path:'/',
-      name:'LandingPage',
-      component: LandingPage,      
+      path: '/',
+      name: 'home',
+      component: () => import('../views/HomeView.vue')
     },
     {
       path: '/login',
@@ -27,16 +24,16 @@ const router = createRouter({
       component: () => import('../views/places/PlacesView.vue')
     },
     {
-      path: '/addPublicPlaces',
-      name: 'addpublicPlaces',
-      component: AddPublicPlace
+      path: '/events',
+      name: 'events',
+      component: () => import('../views/events/EventsView.vue')
     },
     {
-      path: '/hotels',
-      name: 'hotels',
-      component: () => import('../views/hotels/hotels.vue')
-    },
-
+      path: '/admin',
+      name: 'admin',
+      component: () => import('../views/admin/AdminDashboard.vue'),
+      meta: { requiresAdmin: true }
+    }
   ]
 });
 
