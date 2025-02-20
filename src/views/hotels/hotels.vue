@@ -26,7 +26,7 @@
 import { ref } from "vue"; 
 import SidebarFilter from "@/components/hotels/sidebar.vue";
 import ListingCard from "@/components/hotels/ListingCard.vue";
-import FooterComponent from "@/components/footer.vue";
+import FooterComponent from "@/components/public/footer.vue";
 
 export default {
   name: "ListingsPage",

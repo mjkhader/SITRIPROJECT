@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LandingPage from "@/views/LandingPage.vue";
+import LandingPage from "@/views/home/LandingPage.vue";
+import AddPublicPlace from '@/views/places/AddPublicPlace.vue';
 
 
 const router = createRouter({
@@ -26,20 +27,14 @@ const router = createRouter({
       component: () => import('../views/places/PlacesView.vue')
     },
     {
-      path: '/events',
-      name: 'events',
-      component: () => import('../views/events/EventsView.vue')
-    },
-    {
-      path: '/admin',
-      name: 'admin',
-      component: () => import('../views/admin/AdminDashboard.vue'),
-      meta: { requiresAdmin: true }
+      path: '/addPublicPlaces',
+      name: 'addpublicPlaces',
+      component: AddPublicPlace
     },
     {
       path: '/hotels',
       name: 'hotels',
-      component: () => import('../views/hotels.vue')
+      component: () => import('../views/hotels/hotels.vue')
     },
 
   ]
