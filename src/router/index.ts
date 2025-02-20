@@ -6,9 +6,9 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: () => import('../views/HomeView.vue')
+      path:'/',
+      name:'LandingPage',
+      component: LandingPage,      
     },
     {
       path: '/login',
@@ -37,10 +37,11 @@ const router = createRouter({
       meta: { requiresAdmin: true }
     },
     {
-      path:'/LandingPage',
-      name:'LandingPage',
-      component: LandingPage,      
-    }
+      path: '/hotels',
+      name: 'hotels',
+      component: () => import('../views/hotels.vue')
+    },
+
   ]
 });
 

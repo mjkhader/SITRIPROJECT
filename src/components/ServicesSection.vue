@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-white py-16 text-Navy">
+    <section class="bg-white py-16 text-navy">
       <div class="mx-auto px-6 lg:px-20 container">
         <div class="mb-12 text-center">
           <h2 class="font-bold text-4xl">Our Travel Services</h2>
@@ -8,7 +8,7 @@
         
         <!-- Service Cards Grid -->
         <div class="gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          <div v-for="service in services" :key="service.id" class="bg-gradient-to-b from-SkyBlue to-TealBlue shadow-lg p-6 rounded-xl text-center hover:scale-105 transition duration-300">
+          <div v-for="service in services" :key="service.id" class="bg-gradient-to-b from-sky-blue to-teal-blue shadow-lg p-6 rounded-xl text-center hover:scale-105 transition duration-300">
             <div class="flex justify-center">
               <img :src="service.icon" :alt="service.title" class="mb-4 w-16 h-16" />
             </div>
