@@ -1,23 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
-import { useAuthStore } from '../../stores/auth';
-import type { LoginCredentials } from '../../types/user';
+import { ref } from "vue";
+import { useRouter } from "vue-router";
+import { useAuthStore } from "../../stores/auth";
 
 const router = useRouter();
 const authStore = useAuthStore();
 
-const credentials = ref<LoginCredentials>({
-  email: '',
-  password: ''
-});
+const email = ref("");
+const password = ref("");
+const errorMessage = ref("");
 
-const errorMessage = ref('');
-
-async function handleSubmit() {
+async function handleLogin() {
+console.log("Logging in with:", email.value
+, password.value);
   try {
-    await authStore.login(credentials.value);
-    router.push('/');
+    await authStore.login(email.value, password.value);
+    console.log("Logging successful");
+
+    // Check if there's a stored route in localStorage
+    const redirectTo = localStorage.getItem("redirectTo");
+    console.log("Redirecting to:", redirectTo);
+    if (redirectTo) {
+      localStorage.removeItem("redirectTo"); // Clear the stored route after use
+      router.push(redirectTo); // Redirect to the stored route
+    } else {
+      router.push("/"); // Default to home if no route is stored
+    }
   } catch (error) {
     errorMessage.value = error as string;
   }
@@ -25,43 +33,31 @@ async function handleSubmit() {
 </script>
 
 <template>
-  <div class="login-container">
-    <form @submit.prevent="handleSubmit" class="login-form">
+  <div class="auth-container">
+    <form @submit.prevent="handleLogin" class="auth-form">
       <h2>Login</h2>
-      
+
       <div class="form-group">
         <label for="email">Email</label>
-        <input
-          id="email"
-          type="email"
-          v-model="credentials.email"
-          required
-        />
+        <input id="email" type="email" v-model="email" required />
       </div>
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input
-          id="password"
-          type="password"
-          v-model="credentials.password"
-          required
-        />
+        <input id="password" type="password" v-model="password" required />
       </div>
 
-      <div v-if="errorMessage" class="error-message">
-        {{ errorMessage }}
-      </div>
+      <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
 
       <button type="submit" :disabled="authStore.loading">
-        {{ authStore.loading ? 'Logging in...' : 'Login' }}
+        {{ authStore.loading ? "Logging in..." : "Login" }}
       </button>
     </form>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.login-container {
+<style scoped>
+.auth-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,34 +65,29 @@ async function handleSubmit() {
   padding: 2rem;
 }
 
-.login-form {
+.auth-form {
   background: white;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
-
-  h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
 }
 
 .form-group {
   margin-bottom: 1rem;
+}
 
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
 
-  input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
+input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 .error-message {
@@ -107,14 +98,14 @@ async function handleSubmit() {
 button {
   width: 100%;
   padding: 0.75rem;
-  background: #4CAF50;
+  background: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
 
-  &:disabled {
-    background: #ccc;
-  }
+button:disabled {
+  background: #ccc;
 }
 </style>
