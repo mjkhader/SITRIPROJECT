@@ -21,12 +21,14 @@ const router = createRouter({
     {
       path: '/places',
       name: 'places',
-      component: () => import('../views/places/PlacesView.vue')
+      component: () => import('../views/places/PlacesView.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/events',
       name: 'events',
-      component: () => import('../views/events/EventsView.vue')
+      component: () => import('../views/events/EventsView.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: '/admin',
@@ -39,14 +41,13 @@ const router = createRouter({
 
 // Navigation guard
 router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const requiresAdmin = to.matched.some(record => record.meta.requiresAdmin);
   const user = JSON.parse(localStorage.getItem('user') || '{}');
-
-  if (requiresAdmin && user.role !== 'admin') {
-    next('/');
-  } else {
+   if (requiresAuth && !user?.email) {
+    next('/login');
+  } 
     next();
-  }
 });
 
 export default router;

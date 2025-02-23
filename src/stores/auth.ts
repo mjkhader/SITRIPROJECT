@@ -1,11 +1,12 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import { auth, db } from '../firebase';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { auth } from '../firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import type { User} from '../types/user';
+
 
 export const useAuthStore = defineStore('auth', () => {
-  const user = ref<{ uid: string; name: string; email: string } | null>(null);
+  const user = ref<User | null>(null);
   const loading = ref(false);
   const error = ref<string | null>(null);
 
@@ -24,7 +25,6 @@ export const useAuthStore = defineStore('auth', () => {
 
   // Register a new user
   async function register(email: string, password: string) {
-    console.log('Registering function called');
     loading.value = true;
     error.value = null;
   
@@ -34,28 +34,29 @@ export const useAuthStore = defineStore('auth', () => {
         throw new Error('Invalid email value');
       }
   
-      console.log('Registering', email, password);
       // Create user in Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      console.log('User created:', userCredential);
       const firebaseUser = userCredential.user;
   
-      // Update profile if needed
-      await updateProfile(firebaseUser, { displayName: email.split('@')[0] }); // Display name based on email
-  
-      // Save user info in Firestore
-      await setDoc(doc(db, 'users', firebaseUser.uid), {
-        uid: firebaseUser.uid,
-        email,
-      });
-  
+
       // Store user locally
-      user.value = { uid: firebaseUser.uid, name: firebaseUser.displayName || '', email };
+      user.value = { 
+        id: firebaseUser.uid, 
+        email,
+        firstName: '',
+        lastName: '',
+        dateOfBirth: '',
+        phoneNumber: '',
+        personalImage: '',
+        country: '',
+        city: '',
+        interests: [],
+        role: 'user'
+      };
       localStorage.setItem('user', JSON.stringify(user.value));
   
       return user.value;
     } catch (err: any) {
-      console.error('Registration Error:', err.code, err.message);
       error.value = getErrorMessage(err.code);
       throw error.value;
     } finally {
@@ -66,25 +67,29 @@ export const useAuthStore = defineStore('auth', () => {
 
   // Login function remains the same
   async function login(email: string, password: string) {
-    console.log('Logging function called');
     loading.value = true;
     error.value = null;
-    console.log('Logging', email, password);
 
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const firebaseUser = userCredential.user;
 
       user.value = {
-        uid: firebaseUser.uid,
-        name: firebaseUser.displayName || 'User',
+        id: firebaseUser.uid,
         email,
+        firstName: '',
+        lastName: '',
+        dateOfBirth: '',
+        phoneNumber: '',
+        personalImage: '',
+        country: '',
+        city: '',
+        interests: [],
+        role: 'user'
       };
-
       localStorage.setItem('user', JSON.stringify(user.value));
       return user.value;
     } catch (err: any) {
-      console.error('Login Error:', err.code, err.message);
       error.value = getErrorMessage(err.code);
       throw error.value;
     } finally {
@@ -99,7 +104,6 @@ export const useAuthStore = defineStore('auth', () => {
       user.value = null;
       localStorage.removeItem('user');
     } catch (err) {
-      console.error('Logout Error:', err);
       error.value = 'Logout failed. Please try again.';
     }
   }

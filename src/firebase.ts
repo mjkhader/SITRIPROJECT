@@ -3,15 +3,15 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from "firebase/firestore";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
-// Firebase configuration (replace with your Firebase project config)
+// Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAJUnIgek0p2aZgTvVB_lZyn5ubIrFue2E",
-  authDomain: "sitrip.firebaseapp.com",
-  projectId: "sitrip",
-  storageBucket: "sitrip.appspot.com", // Make sure to use the correct storage bucket URL
-  messagingSenderId: "538513990129",
-  appId: "1:538513990129:web:581a388bea5f0387e2e450",
-  measurementId: "G-K6X3EDH51N"
+  apiKey: import.meta.env.VITE_APP_API_KEY,
+  authDomain: import.meta.env.VITE_APP_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_APP_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_APP_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_APP_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_APP_ID,
+  measurementId: import.meta.env.VITE_APP_MEASUREMENT_ID
 };
 
 // Initialize Firebase

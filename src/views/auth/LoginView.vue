@@ -11,15 +11,11 @@ const password = ref("");
 const errorMessage = ref("");
 
 async function handleLogin() {
-console.log("Logging in with:", email.value
-, password.value);
   try {
     await authStore.login(email.value, password.value);
-    console.log("Logging successful");
 
     // Check if there's a stored route in localStorage
     const redirectTo = localStorage.getItem("redirectTo");
-    console.log("Redirecting to:", redirectTo);
     if (redirectTo) {
       localStorage.removeItem("redirectTo"); // Clear the stored route after use
       router.push(redirectTo); // Redirect to the stored route
