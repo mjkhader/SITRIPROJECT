@@ -2,14 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router';
 import LandingPage from "@/views/home/LandingPage.vue";
 import AddPublicPlace from '@/views/places/AddPublicPlace.vue';
 
-
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path:'/',
-      name:'LandingPage',
-      component: LandingPage,      
+      path: '/',
+      name: 'LandingPage',
+      component: LandingPage,
     },
     {
       path: '/login',
@@ -36,6 +35,16 @@ const router = createRouter({
       name: 'hotels',
       component: () => import('../views/hotels/hotels.vue')
     },
+    {
+      path: '/restaurants',
+      name: 'restaurants',
+      component: () => import('../views/restaurants/resturant.vue')
+    },
+    {
+      path: "/flights",
+      name: "flights",
+      component: () => import('../views/flights/flight.vue')
+    }
 
   ]
 });
