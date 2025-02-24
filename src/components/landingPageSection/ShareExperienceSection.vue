@@ -54,12 +54,13 @@
         </p>
 
         <div class="flex justify-center lg:justify-center mt-6">
-          <button
+          <base-button
+            mode="outline"
             @click="$router.push('/addPublicPlaces')"
             class="bg-sky-blue hover:bg-teal-blue shadow-md px-6 py-3 rounded-full font-semibold text-teal-blue hover:text-navy transition duration-300"
           >
             Share Your Experience
-          </button>
+          </base-button>
         </div>
       </div>
     </div>

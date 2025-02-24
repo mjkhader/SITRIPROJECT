@@ -17,6 +17,7 @@ import PopularDestinations from "@/components/landingPageSection/DestinationsSec
 import ShareExperienceSection from "@/components/landingPageSection/ShareExperienceSection.vue";
 import FooterComponent from "@/components/layout/footer.vue";
 
+
 export default {
   components: {
     HeroSection,

@@ -9,12 +9,16 @@
       </div>
 
       <div>
+        <base-badge v-for="service in services" :key="service" :type="service" :title="service"></base-badge>
+      </div>
+
+      <div>
         <span class="font-semibold text-blue-600 text-xl">JOD {{ price }}</span>
         <span class="text-gray-500 text-sm"> / night</span>
       </div>
 
       <div class="bg-blue-500 hover:bg-blue-600 mt-2 px-3 py-1 rounded-md text-white">
-        <router-link to="/places/c1"> View details</router-link>
+        <router-link :to="placesLink"> View details</router-link>
       </div>
     </div>
   </div>
@@ -24,12 +28,18 @@
 export default {
   name: "PlaceCard",
   props: {
-    name: String,
-    location: String,
-    categories: Number,
-    image: String,
-    services:String,
-    description:String
+    id:Number,
+    name:String,
+    location:String,
+    categories:String,
+    image:String,
+    services:Array,
+    description:String,
   },
+  computed : {
+    placesLink(){
+      return this.$route.path + '/'+ this.id  // /places/c1
+    }
+  }
 };
 </script>

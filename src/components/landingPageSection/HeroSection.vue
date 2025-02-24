@@ -40,16 +40,12 @@
         </p>
 
         <div class="flex justify-center lg:justify-center space-x-4 mt-6">
-          <button
-            class="bg-teal-blue hover:bg-pastel-blue shadow-md px-6 py-3 rounded-full font-semibold text-sky-blue hover:text-navy transition duration-300"
-          >
+          <base-button mode="flat">
             Get Started
-          </button>
-          <button
-            class="bg-sky-blue hover:bg-pastel-blue shadow-md px-6 py-3 border border-teal-blue rounded-full font-semibold text-teal-blue hover:text-navy transition duration-300"
-          >
+          </base-button>
+          <base-button mode="outline" >
             Learn More
-          </button>
+          </base-button>
         </div>
       </div>
 
@@ -75,7 +71,9 @@
 </template>
 
 <script>
+import BaseButton from '../ui/BaseButton.vue';
 export default {
+  components: { BaseButton },
   name: "HeroSection",
 };
 </script>
