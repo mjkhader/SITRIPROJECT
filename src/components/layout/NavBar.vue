@@ -12,7 +12,7 @@
         <li><router-link to="/" class="hover:text-teal">Home</router-link></li>
         <li><router-link to="/places" class="hover:text-teal">Places</router-link></li>
         <li><router-link to="/hotels" class="hover:text-teal">Hotels</router-link></li>
-        <li><a href="#about" class="hover:text-teal">About</a></li>
+        <li><a href="/about" class="hover:text-teal">About</a></li>
       </ul>
       
       <!-- Sign Up / Log In Buttons -->
