@@ -53,6 +53,16 @@ const router = createRouter({
       name: 'hotels',
       component: Hotels
     },
+    {
+      path: '/restaurants',
+      name: 'restaurants',
+      component: () => import('../views/restaurants/resturant.vue')
+    },
+    {
+      path: "/flights",
+      name: "flights",
+      component: () => import('../views/flights/flight.vue')
+    },
     // Not Found Page
     {path:'/:notFound(.*)',component:NotFound}
 
