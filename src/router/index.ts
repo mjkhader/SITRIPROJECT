@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import LandingPage from "@/views/home/LandingPage.vue";
+import AddPublicPlace from '@/views/places/AddPublicPlace.vue';
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: () => import('../views/HomeView.vue')
+      path:'/',
+      name:'LandingPage',
+      component: LandingPage,      
     },
     {
       path: '/login',
@@ -41,6 +43,16 @@ const router = createRouter({
       name: 'about',
       component: () => import('../views/about/aboutView.vue')
     },
+    {
+      path: '/restaurants',
+      name: 'restaurants',
+      component: () => import('../views/restaurants/resturant.vue')
+    },
+    {
+      path: "/flights",
+      name: "flights",
+      component: () => import('../views/flights/flight.vue')
+    }
 
   ]
 });
