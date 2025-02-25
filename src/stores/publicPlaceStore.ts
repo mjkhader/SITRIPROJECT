@@ -15,11 +15,11 @@ export const usePlaceStore = defineStore("placeStore", {
     places: [
       {
         id: 1,
-        image: "",
+        image: "../assets/imgs/firstphoto.jpg",
         name: "Petra Voila",
         location: "Wadi Musa",
-        categories: 'park', 
-        services: ['wifi', 'parking'],
+        categories: "park",
+        services: ["wifi", "parking"],
         description: "This is the first place",
       },
       {
@@ -27,8 +27,8 @@ export const usePlaceStore = defineStore("placeStore", {
         image: "",
         name: "Petra Premium Hotel",
         location: "Wadi Musa",
-        categories: 'restaurant', 
-        services: ['wifi'],
+        categories: "restaurant",
+        services: ["wifi"],
         description: "This is the second place",
       },
       {
@@ -36,10 +36,16 @@ export const usePlaceStore = defineStore("placeStore", {
         image: "",
         name: "Edom Hotel",
         location: "Wadi Musa",
-        categories: 'museum',
-        services: ['parking'],
+        categories: "museum",
+        services: ["parking"],
         description: "This is the third place",
       },
-    ] 
-})
+    ],
+  }),
+
+  actions: {
+    addPlace(newPlace: Omit<Place, "id">) {
+      this.places.push({ id: Date.now(), ...newPlace });
+    },
+  },
 });

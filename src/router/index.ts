@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import LandingPage from "@/views/home/LandingPage.vue";
 import AddPublicPlace from '@/views/places/AddPublicPlace.vue';
 import PlacesView from '../views/places/PlacesView.vue';
-import PlacesDetails from '../views/places/PlacesView.vue';
+import PlacesDetails from '../views/places/PlacesDetails.vue';
 import PlacesContact from '../views/places/PlacesContact.vue';
 import LoginView from '@/views/auth/LoginView.vue';
 import RegisterView from '@/views/auth/RegisterView.vue';
@@ -36,11 +36,11 @@ const router = createRouter({
     // for places id
     {
       path: '/places/:id',
-      name: 'hotels',
+      name: 'details',
       props:true,
       component: PlacesDetails,
       children: [
-        {path:'contact',name:'contact',component: PlacesContact}, // places/c1/info
+        {path:'contact',name:'contact',component: PlacesContact}, // places/c1/contact
       ]
     },
     {

@@ -1,24 +1,50 @@
 <template>
-  <div class="flex space-x-4 bg-white shadow-md p-4 rounded-lg">
-    <img :src="image" alt="Hotel Image" class="rounded-lg w-32 h-32 object-cover">
-    
-    <div class="flex flex-col justify-between">
-      <div>
-        <h3 class="font-bold text-lg">{{ name }}</h3>
-        <p class="text-gray-600 text-sm">{{ location }}</p>
+  <div class="bg-white shadow-lg rounded-xl p-6 flex flex-col sm:flex-row items-center sm:items-start gap-6 transition-transform hover:scale-105">
+    <!-- Image -->
+    <img 
+      :src="image || 'https://via.placeholder.com/150'" 
+      alt="Place Image" 
+      class="w-full sm:w-40 h-40 object-cover rounded-lg shadow-md"
+    />
+
+    <!-- Content -->
+    <div class="flex flex-col flex-grow text-center sm:text-left">
+      <!-- Name & Location -->
+      <h3 class="text-2xl font-semibold text-navy">{{ name }}</h3>
+      <p class="text-gray-500 text-sm">{{ location }}</p>
+
+      <!-- Services -->
+      <div class="flex flex-wrap justify-center sm:justify-start gap-2 my-3">
+        <base-badge
+          v-for="service in services"
+          :key="service"
+          :type="service"
+          :title="service"
+          class="bg-teal-blue text-white px-3 py-1 rounded-lg text-xs shadow-sm"
+        ></base-badge>
       </div>
 
-      <div>
-        <base-badge v-for="service in services" :key="service" :type="service" :title="service"></base-badge>
-      </div>
-
-      <div>
-        <span class="font-semibold text-blue-600 text-xl">JOD {{ price }}</span>
+      <!-- Price -->
+      <div class="mt-2 text-lg font-bold text-teal">
+        JOD {{ price }}
         <span class="text-gray-500 text-sm"> / night</span>
       </div>
 
-      <div class="bg-blue-500 hover:bg-blue-600 mt-2 px-3 py-1 rounded-md text-white">
-        <router-link :to="placesLink"> View details</router-link>
+      <!-- Buttons (Now Properly Contained) -->
+      <div class="mt-4 flex flex-col sm:flex-row gap-3">
+        <router-link 
+          :to="placesDetailsLink"
+          class="w-full sm:w-auto text-center bg-teal px-4 py-2 text-white font-medium rounded-lg shadow-md hover:bg-teal-blue transition"
+        >
+          View Details
+        </router-link>
+        
+        <router-link 
+          :to="placesContactLink"
+          class="w-full sm:w-auto text-center bg-sky-blue px-4 py-2 text-navy font-medium rounded-lg shadow-md hover:bg-pastel-blue transition"
+        >
+          Contact
+        </router-link>
       </div>
     </div>
   </div>
@@ -28,18 +54,22 @@
 export default {
   name: "PlaceCard",
   props: {
-    id:Number,
-    name:String,
-    location:String,
-    categories:String,
-    image:String,
-    services:Array,
-    description:String,
+    id: Number,
+    name: String,
+    location: String,
+    categories: String,
+    image: String,
+    services: Array,
+    description: String,
+    price: Number,
   },
-  computed : {
-    placesLink(){
-      return this.$route.path + '/'+ this.id  // /places/c1
-    }
-  }
+  computed: {
+    placesDetailsLink() {
+      return `/places/${this.id}`;
+    },
+    placesContactLink() {
+      return `/places/${this.id}/contact`;
+    },
+  },
 };
 </script>
