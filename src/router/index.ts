@@ -51,12 +51,14 @@ const router = createRouter({
     {
       path: '/hotels',
       name: 'hotels',
-      component: Hotels
+      component: Hotels,
+      meta: { requiresAuth: true }
     },
     {
       path: '/restaurants',
       name: 'restaurants',
-      component: () => import('../views/restaurants/resturant.vue')
+      component: () => import('../views/restaurants/resturant.vue'),
+      meta: { requiresAuth: true }
     },
     {
       path: "/flights",
@@ -70,15 +72,14 @@ const router = createRouter({
 });
 
  // Navigation guard
-// router.beforeEach((to, from, next) => {
-//   const requiresAdmin = to.matched.some(record => record.meta.requiresAdmin);
-//   const user = JSON.parse(localStorage.getItem('user') || '{}');
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
 
-//   if (requiresAdmin && user.role !== 'admin') {
-//     next('/');
-//   } else {
-//     next();
-//   }
-// });
+  if (requiresAuth && !user?.email) {
+    next('/login');
+  }
+  next();
+});
 
 export default router;

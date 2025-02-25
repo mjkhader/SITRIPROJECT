@@ -3,10 +3,10 @@
     <div class="flex justify-between items-center mx-auto container">
       <!-- Logo -->
       <router-link to="/">
-      <div class="font-bold text-navy text-2xl">
-        <span class="text-teal">Si</span>trip
-      </div>
-    </router-link>
+        <div class="font-bold text-navy text-2xl">
+          <span class="text-teal">Si</span>trip
+        </div>
+      </router-link>
       <!-- Navigation Links -->
       <ul class="flex space-x-6 text-navy">
         <li><router-link to="/" class="hover:text-teal">Home</router-link></li>
@@ -14,21 +14,50 @@
         <li><router-link to="/hotels" class="hover:text-teal">Hotels</router-link></li>
         <li><a href="#about" class="hover:text-teal">About</a></li>
       </ul>
-      
-      <!-- Sign Up / Log In Buttons -->
+
+      <!-- Auth Buttons -->
       <div class="flex space-x-4">
-        <button @click="$router.push('/login')" class="px-4 py-2 rounded font-semibold text-navy hover:text-teal transition">Log In</button>
-        <button @click="$router.push('/register')" class="bg-teal hover:bg-sky-blue px-4 py-2 rounded-full font-semibold text-white hover:text-navy transition">Sign Up</button>
+        <!-- Show only if user is NOT logged in -->
+        <template v-if="!authStore.user">
+          <button @click="$router.push('/login')" 
+            class="px-4 py-2 rounded font-semibold text-navy hover:text-teal transition">
+            Log In
+          </button>
+          <button @click="$router.push('/register')" 
+            class="bg-teal hover:bg-sky-blue px-4 py-2 rounded-full font-semibold text-white hover:text-navy transition">
+            Sign Up
+          </button>
+        </template>
+
+        <!-- Show Logout button if user is logged in -->
+        <button v-else @click="logout" 
+          class="bg-teal hover:bg-sky-blue px-4 py-2 rounded-full font-semibold text-white hover:text-navy transition">
+          Logout
+        </button>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
+import { useAuthStore } from '../../stores/auth';
+import { onMounted } from 'vue';
+
 export default {
   name: 'Navbar',
+  setup() {
+    const authStore = useAuthStore();
+
+    // Load user from localStorage on mount
+    onMounted(() => {
+      authStore.loadUser();
+    });
+
+    const logout = async () => {
+      await authStore.logout();
+    };
+
+    return { authStore, logout };
+  }
 };
 </script>
-
-<style scoped>
-</style>
