@@ -11,13 +11,6 @@ const formData = ref<RegisterData>({
   email: '',
   password: '',
   confirmPassword: '',
-  firstName: '',
-  lastName: '',
-  dateOfBirth: '',
-  phoneNumber: '',
-  personalImage: '',
-  country: '',
-  city: ''
 });
 
 const errorMessage = ref('');
@@ -28,13 +21,20 @@ async function handleSubmit() {
     return;
   }
 
+  // Check if email is valid
+  if (!formData.value.email || !formData.value.email.trim()) {
+    errorMessage.value = 'Email is required';
+    return;
+  }
+
   try {
-    await authStore.register(formData.value);
-    router.push('/');
+    await authStore.register(formData.value.email, formData.value.password);
+    router.push('/'); // Redirect to home after successful registration
   } catch (error) {
     errorMessage.value = error as string;
   }
 }
+
 </script>
 
 <template>
@@ -72,76 +72,6 @@ async function handleSubmit() {
         />
       </div>
 
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input
-          id="firstName"
-          type="text"
-          v-model="formData.firstName"
-          required
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input
-          id="lastName"
-          type="text"
-          v-model="formData.lastName"
-          required
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="dateOfBirth">Date of Birth</label>
-        <input
-          id="dateOfBirth"
-          type="date"
-          v-model="formData.dateOfBirth"
-          required
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="phoneNumber">Phone Number</label>
-        <input
-          id="phoneNumber"
-          type="tel"
-          v-model="formData.phoneNumber"
-          required
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="personalImage">Profile Image URL</label>
-        <input
-          id="personalImage"
-          type="url"
-          v-model="formData.personalImage"
-          required
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="country">Country</label>
-        <input
-          id="country"
-          type="text"
-          v-model="formData.country"
-          required
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="city">City</label>
-        <input
-          id="city"
-          type="text"
-          v-model="formData.city"
-          required
-        />
-      </div>
-
       <div v-if="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
@@ -168,7 +98,7 @@ async function handleSubmit() {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
 
   h2 {
     text-align: center;

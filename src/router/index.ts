@@ -6,9 +6,9 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
-      path: '/',
-      name: 'LandingPage',
-      component: LandingPage,
+      path:'/',
+      name:'LandingPage',
+      component: LandingPage,      
     },
     {
       path: '/login',
@@ -23,17 +23,24 @@ const router = createRouter({
     {
       path: '/places',
       name: 'places',
-      component: () => import('../views/places/PlacesView.vue')
+      component: () => import('../views/places/PlacesView.vue'),
+      meta: { requiresAuth: true }
     },
     {
-      path: '/addPublicPlaces',
-      name: 'addpublicPlaces',
-      component: AddPublicPlace
+      path: '/events',
+      name: 'events',
+      component: () => import('../views/events/EventsView.vue'),
+      meta: { requiresAuth: true }
     },
     {
-      path: '/hotels',
-      name: 'hotels',
-      component: () => import('../views/hotels/hotels.vue')
+      path: '/admin',
+      name: 'admin',
+      component: () => import('../views/admin/AdminDashboard.vue'),
+      meta: { requiresAdmin: true }
+    }    {
+      path: '/about',
+      name: 'about',
+      component: () => import('../views/about/aboutView.vue')
     },
     {
       path: '/restaurants',
@@ -51,14 +58,13 @@ const router = createRouter({
 
 // Navigation guard
 router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const requiresAdmin = to.matched.some(record => record.meta.requiresAdmin);
   const user = JSON.parse(localStorage.getItem('user') || '{}');
-
-  if (requiresAdmin && user.role !== 'admin') {
-    next('/');
-  } else {
+   if (requiresAuth && !user?.email) {
+    next('/login');
+  } 
     next();
-  }
 });
 
 export default router;
