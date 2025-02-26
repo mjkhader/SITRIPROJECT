@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "../../stores/auth";
 import type { RegisterData } from "../../types/user";
@@ -14,6 +14,10 @@ const formData = ref<RegisterData>({
 });
 
 const errorMessage = ref("");
+
+onMounted(() => {
+  document.body.style.overflow = "hidden"; // Prevent scrolling
+});
 
 async function handleSubmit() {
   if (formData.value.password !== formData.value.confirmPassword) {
@@ -37,7 +41,7 @@ async function handleSubmit() {
 </script>
 
 <template>
-  <div class="flex justify-center items-center min-h-screen bg-sky-blue p-4">
+  <div class="flex justify-center items-center h-screen bg-sky-blue p-4">
     <form @submit.prevent="handleSubmit" class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
       <h2 class="text-3xl font-semibold text-center text-navy mb-6">Register</h2>
 
