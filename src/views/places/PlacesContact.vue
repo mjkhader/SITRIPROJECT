@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg mt-6">
+  <div class="max-w-lg mx-auto bg-white p-6 rounded-lg  shadow-lg mt-6">
     <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Contact Us</h2>
     
     <form class="space-y-4">

@@ -24,24 +24,23 @@
         ></base-badge>
       </div>
 
-      <!-- Price -->
-      <div class="mt-2 text-lg font-bold text-teal">
-        JOD {{ price }}
-        <span class="text-gray-500 text-sm"> / night</span>
+      <!-- categories -->
+      <div class="mt-0 text-medium font-bold text-teal">
+         {{ categories }}
       </div>
 
       <!-- Buttons (Now Properly Contained) -->
-      <div class="mt-4 flex flex-col sm:flex-row gap-3">
+      <div class="mt-2 flex flex-col sm:flex-row gap-2">
         <router-link 
           :to="placesDetailsLink"
-          class="w-full sm:w-auto text-center bg-teal px-4 py-2 text-white font-medium rounded-lg shadow-md hover:bg-teal-blue transition"
+          class="w-full sm:w-auto text-center bg-teal px-2 py-2 text-white font-medium rounded-lg shadow-md hover:bg-teal-blue transition"
         >
           View Details
         </router-link>
         
         <router-link 
           :to="placesContactLink"
-          class="w-full sm:w-auto text-center bg-sky-blue px-4 py-2 text-navy font-medium rounded-lg shadow-md hover:bg-pastel-blue transition"
+          class="w-full sm:w-auto text-center bg-sky-blue px-3 py-2 text-navy font-medium rounded-lg shadow-md hover:bg-pastel-blue transition"
         >
           Contact
         </router-link>
@@ -61,7 +60,6 @@ export default {
     image: String,
     services: Array,
     description: String,
-    price: Number,
   },
   computed: {
     placesDetailsLink() {
