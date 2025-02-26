@@ -65,6 +65,11 @@ const router = createRouter({
       name: "flights",
       component: () => import('../views/flights/flight.vue')
     },
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('../views/about/aboutView.vue')
+    },
     // Not Found Page
     {path:'/:notFound(.*)',component:NotFound}
 
