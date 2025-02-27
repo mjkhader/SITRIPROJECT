@@ -5,16 +5,16 @@
     <div class="absolute inset-0">
       <div class="top-8 left-12 absolute">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
+          src="https://cdn-icons-png.flaticon.com/512/414/414927.png"
           alt="Cloud"
           class="opacity-50 w-16"
         />
       </div>
       <div class="top-16 right-20 absolute">
         <img
-          src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
+          src="https://cdn-icons-png.flaticon.com/512/414/414927.png"
           alt="Cloud"
-          class="opacity-50 w-20"
+          class="opacity-50 w-16"
         />
       </div>
       <div class="top-4 right-10 absolute">
@@ -22,6 +22,20 @@
           src="https://cdn-icons-png.flaticon.com/512/684/684908.png"
           alt="Airplane"
           class="w-12 rotate-45"
+        />
+      </div>
+        <div class="bottom-14 left-12 absolute">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
+          alt="Cloud"
+          class="opacity-50 w-16"
+        />
+      </div>
+        <div class="right-12 bottom-7 absolute">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
+          alt="Cloud"
+          class="opacity-50 w-16"
         />
       </div>
     </div>
@@ -40,12 +54,8 @@
         </p>
 
         <div class="flex justify-center lg:justify-center space-x-4 mt-6">
-          <base-button mode="flat">
-            Get Started
-          </base-button>
-          <base-button mode="outline" >
-            Learn More
-          </base-button>
+          <base-button mode="flat"> Get Started </base-button>
+          <base-button mode="outline"> Learn More </base-button>
         </div>
       </div>
 
@@ -71,7 +81,7 @@
 </template>
 
 <script>
-import BaseButton from '../ui/BaseButton.vue';
+import BaseButton from "../ui/BaseButton.vue";
 export default {
   components: { BaseButton },
   name: "HeroSection",
