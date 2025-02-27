@@ -68,11 +68,13 @@ export default defineComponent({
   setup() {
     const route = useRoute();
     const placeStore = usePlaceStore();
+    placeStore.fetchPlaces()
+
 
     // Find the selected place based on route ID
     const selectedPlace = computed(() => {
       return placeStore.places.find(
-        (place) => place.id === Number(route.params.id)
+        (place) => place.id === route.params.id
       );
     });
 

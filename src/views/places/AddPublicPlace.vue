@@ -108,8 +108,8 @@ export default {
     };
 
     // Submit form and add to Pinia
-    const submitPlace = () => {
-      placeStore.addPlace({
+    const submitPlace = async () => {
+        await placeStore.addPlace({
         image: image.value,
         name: name.value,
         location: location.value,
