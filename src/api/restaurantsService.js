@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "https://tripadvisor16.p.rapidapi.com";
-const API_KEY = import.meta.env.VITE_RAPIDAPI_KEY_restaurants; 
+const API_KEY = import.meta.env.VITE_RAPIDAPI_KEY_restaurants;
 
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
@@ -14,12 +14,10 @@ const axiosInstance = axios.create({
 
 async function getLocationId(city) {
   try {
-    console.log("Using API Key (getLocationId):", API_KEY);
-    const response = await axiosInstance.get(`/api/v1/hotels/searchLocation`, {
+    const response = await axiosInstance.get("/api/v1/hotels/searchLocation", {
       params: { query: city },
     });
 
-    console.log("API Response (getLocationId):", response.data);
     if (response.data?.data?.length > 0) {
       return response.data.data[0].geoId;
     } else {
@@ -32,12 +30,13 @@ async function getLocationId(city) {
 }
 async function fetchRestaurants(locationId) {
   try {
-    console.log("Using API Key (fetchRestaurants):", API_KEY);
-    const response = await axiosInstance.get(`/api/v1/restaurant/searchRestaurants`, {
-      params: { locationId },
-    });
+    const response = await axiosInstance.get(
+      `/api/v1/restaurant/searchRestaurants`,
+      {
+        params: { locationId },
+      }
+    );
 
-    console.log("API Response (fetchRestaurants):", response.data);
     if (response.data?.data?.data?.length > 0) {
       return response.data.data.data;
     } else {
