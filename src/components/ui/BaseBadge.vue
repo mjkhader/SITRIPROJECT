@@ -24,8 +24,10 @@ export default {
   color: #252525;
   border-radius: 30px;
   padding: 0.2rem 1rem;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   margin-right: 0.5rem;
+  
 }
 
 .wifi {

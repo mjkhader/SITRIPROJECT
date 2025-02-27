@@ -1,7 +1,9 @@
 import { defineStore } from "pinia";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from "@/firebase"; // Adjust the path if needed
 
 interface Place {
-  id: number;
+  id: string;
   image: string;
   name: string;
   location: string;
@@ -12,40 +14,21 @@ interface Place {
 
 export const usePlaceStore = defineStore("placeStore", {
   state: () => ({
-    places: [
-      {
-        id: 1,
-        image: "../assets/imgs/firstphoto.jpg",
-        name: "Petra Voila",
-        location: "Wadi Musa",
-        categories: "park",
-        services: ["wifi", "parking"],
-        description: "This is the first place",
-      },
-      {
-        id: 2,
-        image: "",
-        name: "Petra Premium Hotel",
-        location: "Wadi Musa",
-        categories: "restaurant",
-        services: ["wifi"],
-        description: "This is the second place",
-      },
-      {
-        id: 3,
-        image: "",
-        name: "Edom Hotel",
-        location: "Wadi Musa",
-        categories: "museum",
-        services: ["parking"],
-        description: "This is the third place",
-      },
-    ],
+    places: [] as Place[],
   }),
 
   actions: {
-    addPlace(newPlace: Omit<Place, "id">) {
-      this.places.push({ id: Date.now(), ...newPlace });
+    async fetchPlaces() {
+      const querySnapshot = await getDocs(collection(db, "places"));
+      this.places = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as Place[];
+    },
+
+    async addPlace(newPlace: Omit<Place, "id">) {
+      const docRef = await addDoc(collection(db, "places"), newPlace);
+      this.places.push({ id: docRef.id, ...newPlace });
     },
   },
 });

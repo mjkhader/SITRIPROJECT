@@ -53,6 +53,7 @@ export default {
   },
   setup() {
     const placeStore = usePlaceStore();
+    placeStore.fetchPlaces()
     return { placeStore };
   },
 };
