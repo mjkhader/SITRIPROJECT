@@ -1,57 +1,49 @@
-const BASE_URL = 'https://tripadvisor16.p.rapidapi.com';
+import axios from "axios";
+
+const BASE_URL = "https://tripadvisor16.p.rapidapi.com";
+const API_KEY = import.meta.env.VITE_RAPIDAPI_KEY_restaurants;
+
+const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    "X-RapidAPI-Key": API_KEY,
+    "X-RapidAPI-Host": "tripadvisor16.p.rapidapi.com",
+  },
+  timeout: 10000,
+});
 
 async function getLocationId(city) {
-  const url = `${BASE_URL}/api/v1/hotels/searchLocation?query=${city}`;
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': import.meta.env.VITE_RAPIDAPI_KEY_restaurants,
-      'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com',
-    },
-  };
-
   try {
-    const response = await fetch(url, options);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+    const response = await axiosInstance.get("/api/v1/hotels/searchLocation", {
+      params: { query: city },
+    });
+
+    if (response.data?.data?.length > 0) {
+      return response.data.data[0].geoId;
+    } else {
+      throw new Error("Location not found");
     }
-    const data = await response.json();
-    console.log('API Response (getLocationId):', data);
-    if (data.data && data.data.length > 0) {
-      return data.data[0].geoId; 
-    }
-    throw new Error('Location not found');
   } catch (error) {
-    console.error('Error fetching location ID:', error);
+    console.error("Error fetching location ID:", error.message);
     throw error;
   }
 }
-
 async function fetchRestaurants(locationId) {
-  const url = `${BASE_URL}/api/v1/restaurant/searchRestaurants?locationId=${locationId}`;
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': import.meta.env.VITE_RAPIDAPI_KEY_restaurant,
-      'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com',
-    },
-  };
-
   try {
-    const response = await fetch(url, options);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
-    console.log('API Response (fetchRestaurants):', data);
+    const response = await axiosInstance.get(
+      `/api/v1/restaurant/searchRestaurants`,
+      {
+        params: { locationId },
+      }
+    );
 
-    
-    if (data.data && data.data.data && data.data.data.length > 0) {
-      return data.data.data;
+    if (response.data?.data?.data?.length > 0) {
+      return response.data.data.data;
+    } else {
+      throw new Error("No restaurants found for this location.");
     }
-    throw new Error('No restaurants found for this location.');
   } catch (error) {
-    console.error('Error fetching restaurants:', error);
+    console.error("Error fetching restaurants:", error.message);
     throw error;
   }
 }
