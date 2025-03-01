@@ -37,13 +37,6 @@
         >
           View Details
         </router-link>
-        
-        <router-link 
-          :to="placesContactLink"
-          class="w-full sm:w-auto text-center bg-sky-blue px-3 py-2 text-navy font-medium rounded-lg shadow-md hover:bg-pastel-blue transition"
-        >
-          Contact
-        </router-link>
       </div>
     </div>
   </div>
