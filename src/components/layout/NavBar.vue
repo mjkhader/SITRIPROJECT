@@ -11,7 +11,6 @@
       <ul class="flex space-x-6 text-navy">
         <li><router-link to="/" class="hover:text-teal">Home</router-link></li>
         <li><router-link to="/places" class="hover:text-teal">Places</router-link></li>
-        <li><router-link to="/hotels" class="hover:text-teal">Hotels</router-link></li>
         <li><router-link to="/about" class="hover:text-teal">About</router-link></li>
         <li><router-link to="/flights" class="hover:text-teal">flights</router-link></li>
         <li><router-link to="/restaurants" class="hover:text-teal">restaurants</router-link></li>  

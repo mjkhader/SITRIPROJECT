@@ -61,6 +61,7 @@ export default {
     services: Array,
     description: String,
   },
+ 
   computed: {
     placesDetailsLink() {
       return `/places/${this.id}`;
