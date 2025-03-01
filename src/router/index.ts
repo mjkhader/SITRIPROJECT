@@ -6,7 +6,6 @@ import PlacesDetails from '../views/places/PlacesDetails.vue';
 import PlacesContact from '../views/places/PlacesContact.vue';
 import LoginView from '@/views/auth/LoginView.vue';
 import RegisterView from '@/views/auth/RegisterView.vue';
-import Hotels from '@/views/hotels/hotels.vue';
 import NotFound from '@/views/NotFound.vue';
 
 
@@ -47,12 +46,6 @@ const router = createRouter({
       path: '/addPublicPlaces',
       name: 'addpublicPlaces',
       component: AddPublicPlace
-    },
-    {
-      path: '/hotels',
-      name: 'hotels',
-      component: Hotels,
-      meta: { requiresAuth: true }
     },
     {
       path: '/restaurants',

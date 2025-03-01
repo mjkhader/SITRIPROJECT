@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { collection, addDoc, getDocs } from "firebase/firestore";
-import { db } from "@/firebase"; // Adjust the path if needed
+import { db } from "@/firebase"; 
 
 interface Place {
   id: string;
@@ -15,15 +15,23 @@ interface Place {
 export const usePlaceStore = defineStore("placeStore", {
   state: () => ({
     places: [] as Place[],
+    isLoading:false,
   }),
 
   actions: {
     async fetchPlaces() {
-      const querySnapshot = await getDocs(collection(db, "places"));
-      this.places = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      })) as Place[];
+      this.isLoading = true; // Start loading
+      try {
+        const querySnapshot = await getDocs(collection(db, "places"));
+        this.places = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as Place[];
+      } catch (error) {
+        console.error("Error fetching places:", error);
+      } finally {
+        this.isLoading = false; // Stop loading
+      }
     },
 
     async addPlace(newPlace: Omit<Place, "id">) {

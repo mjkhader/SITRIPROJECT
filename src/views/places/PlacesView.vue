@@ -6,8 +6,15 @@
         <h1 class="text-3xl font-bold text-navy mb-6">Available Places</h1>
       </div>
 
+        <div
+          v-if="placeStore.isLoading"
+          class="flex justify-center items-center mt-4 text-center"
+        >
+          <LottieAnimation animationPath="src/assets/animations/ticket.json" />
+        </div>
+
       <!-- Places Grid -->
-      <div class="grid gap-6 grid-cols-1 md:grid-cols-1 lg:grid-cols-3">
+      <div v-else class="grid gap-6 grid-cols-1 md:grid-cols-1 lg:grid-cols-3">
         <place-card
           v-for="place in placeStore.places"
           :key="place.id"
@@ -44,12 +51,14 @@ import FooterComponent from "@/components/layout/footer.vue";
 import PlaceCard from "@/components/places/PlaceCard.vue";
 import { usePlaceStore } from "@/stores/publicPlaceStore";
 import BaseButton from '../../components/ui/BaseButton.vue';
+import LottieAnimation from '@/components/loaders/LottieLoader.vue'
 
 export default {
   components: {
     PlaceCard,
     FooterComponent,
     BaseButton,
+    LottieAnimation
   },
   setup() {
     const placeStore = usePlaceStore();
