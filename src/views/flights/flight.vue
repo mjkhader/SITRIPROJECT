@@ -1,4 +1,4 @@
- <template>
+<template>
   <div class="flex flex-col bg-white min-h-screen">
     <div class="flex-grow">
       <div class="bg-gray-100 py-6">

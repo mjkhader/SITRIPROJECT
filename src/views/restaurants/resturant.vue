@@ -93,6 +93,7 @@ import FooterComponent from "@/components/layout/footer.vue";
 import { getLocationId, fetchRestaurants } from "@/api/restaurantsService";
 import LottieAnimation from "@/components/loaders/LottieLoader.vue";
 import Pagination from "@/components/layout/Pagination.vue";
+import defaultRestaurantImg from "@/assets/imgs/default-restaurant.jpg";
 
 export default {
   components: { ListingCard, FooterComponent, LottieAnimation, Pagination },
@@ -132,10 +133,11 @@ export default {
             !restaurant.heroImgUrl ||
             !restaurant.heroImgUrl.startsWith("http")
           ) {
-            restaurant.heroImgUrl = require("@/assets/imgs/default-restaurant.jpg");
+            restaurant.heroImgUrl = defaultRestaurantImg;
           }
           return restaurant;
         });
+
         this.filteredRestaurants = [...this.restaurants];
         this.currentPage = 1;
       } catch (error) {

@@ -4,6 +4,7 @@
       :src="restaurant.heroImgUrl"
       alt="Restaurant Image"
       class="rounded-lg w-full h-48 object-cover"
+      @error="replaceWithDefault"
     />
 
     <div class="mt-4">
@@ -52,16 +53,19 @@
     </div>
   </div>
 </template>
-    
-    <script>
+  
+  <script>
+import defaultRestaurantImg from "@/assets/imgs/default-restaurant.jpg";
+
 export default {
   props: {
     restaurant: Object,
   },
+  methods: {
+    replaceWithDefault(event) {
+      event.target.src = defaultRestaurantImg;
+    },
+  },
 };
 </script>
-    
-
-    
-
- 
+  

@@ -24,14 +24,14 @@
           class="w-12 rotate-45"
         />
       </div>
-        <div class="bottom-14 left-12 absolute">
+      <div class="bottom-14 left-12 absolute">
         <img
           src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
           alt="Cloud"
           class="opacity-50 w-16"
         />
       </div>
-        <div class="right-12 bottom-7 absolute">
+      <div class="right-12 bottom-7 absolute">
         <img
           src="https://cdn-icons-png.flaticon.com/512/2972/2972185.png"
           alt="Cloud"
@@ -52,11 +52,6 @@
           destinations. Experience new cultures, stunning landscapes, and unique
           adventures tailored just for you.
         </p>
-
-        <div class="flex justify-center lg:justify-center space-x-4 mt-6">
-          <base-button mode="flat"> Get Started </base-button>
-          <base-button mode="outline"> Learn More </base-button>
-        </div>
       </div>
 
       <div

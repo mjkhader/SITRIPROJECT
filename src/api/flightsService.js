@@ -21,5 +21,4 @@ export const searchFlights = async (fromEntityId) => {
     console.log("Error fetching flights:", error);
     // throw new Error("Failed to fetch flights. Please try again.");
   }
-
 };
